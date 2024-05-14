@@ -1,6 +1,5 @@
 import { IS_BLINK, IS_WORKER_SCOPE } from './helpers'
 
-// warm up while we detect lies
 try {
   speechSynthesis.getVoices()
 }
@@ -14,10 +13,8 @@ const GHOST = `
   visibility: hidden;
 `
 function getRandomValues() {
-  return (
-    String.fromCharCode(Math.random() * 26 + 97)
+  return String.fromCharCode(Math.random() * 26 + 97)
     + Math.random().toString(36).slice(-7)
-  )
 }
 
 function getBehemothIframe(win: Window): Window | null {
@@ -50,11 +47,7 @@ function getBehemothIframe(win: Window): Window | null {
   }
 }
 
-interface Phantom {
-  iframeWindow: Window
-  div?: HTMLDivElement | undefined
-}
-function getPhantomIframe(): Phantom {
+function getPhantomIframe() {
   if (IS_WORKER_SCOPE)
     return { iframeWindow: self }
   try {
@@ -74,6 +67,6 @@ function getPhantomIframe(): Phantom {
     return { iframeWindow: self }
   }
 }
-const { iframeWindow: PHANTOM_DARKNESS, div: PARENT_PHANTOM } = getPhantomIframe() || {}
+const { iframeWindow: PHANTOM_DARKNESS, div: PARENT_PHANTOM } = getPhantomIframe()
 
 export { getRandomValues, PHANTOM_DARKNESS, PARENT_PHANTOM }

@@ -20,6 +20,5 @@
 - [x] status
 - [x] svg
 - [x] timezone
-- [ ] webgl
-- [x] webrtc
+- [x] webgl
 - [x] window

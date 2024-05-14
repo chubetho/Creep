@@ -1,18 +1,5 @@
 const GIGABYTE = 1073741824 // bytes
 
-function getMaxCallStackSize(): number {
-  const fn = (): number => {
-    try {
-      return 1 + fn()
-    }
-    catch (error) {
-      return 1
-    }
-  }
-  ;[...Array(10)].forEach(() => fn()) // stabilize
-  return fn()
-}
-
 // based on and inspired by
 // https://github.com/Joe12387/OP-Fingerprinting-Script/blob/main/opfs.js#L443
 function getTimingResolution(): [number, number] {
@@ -78,20 +65,14 @@ function getClientCode(): string[] {
     .filter(x => isClient(x))
 }
 
-interface BatteryManager {
-  charging: boolean
-  chargingTime: number
-  dischargingTime: number
-  level: number
-}
-async function getBattery(): Promise<BatteryManager | null> {
+async function getBattery() {
   if (!('getBattery' in navigator))
     return null
   // @ts-expect-error if not supported
   return navigator.getBattery()
 }
 
-export async function getStorage(): Promise<number | null> {
+async function getStorage() {
   if (!navigator?.storage?.estimate)
     return null
   return Promise.all([
@@ -105,7 +86,7 @@ export async function getStorage(): Promise<number | null> {
   ]).then(([quota1, quota2]) => (quota2 || quota1) as number)
 }
 
-async function getScriptSize(): Promise<number | null> {
+async function getScriptSize() {
   let url = null
   try {
     // @ts-expect-error if unsupported
@@ -121,35 +102,12 @@ async function getScriptSize(): Promise<number | null> {
     .catch(() => null)
 }
 
-interface Status {
-  charging?: boolean
-  chargingTime?: number
-  dischargingTime?: number
-  level?: number
-  memory: number | null
-  memoryInGigabytes: number | null
-  quota: number | null
-  quotaIsInsecure: boolean | null
-  quotaInGigabytes: number | null
-  downlink?: number
-  effectiveType?: string
-  rtt?: number | undefined
-  saveData?: boolean
-  downlinkMax?: number
-  type?: string
-  stackSize: number
-  timingRes: [number, number]
-  clientLitter: string[]
-  scripts: string[]
-  scriptSize: number | null
-}
-export async function getStatus(): Promise<Status> {
+export async function getStatus() {
   const [
     batteryInfo,
     quotaA,
     quotaB,
     scriptSize,
-    stackSize,
     timingRes,
     clientLitter,
   ] = await Promise.all([
@@ -157,7 +115,6 @@ export async function getStatus(): Promise<Status> {
     getStorage(),
     getStorage(),
     getScriptSize(),
-    getMaxCallStackSize(),
     getTimingResolution(),
     [...new Set([...getClientLitter(), ...getClientCode()])].sort().slice(0, 50),
   ])
@@ -215,7 +172,6 @@ export async function getStatus(): Promise<Status> {
     saveData,
     downlinkMax,
     type,
-    stackSize,
     timingRes,
     clientLitter,
     scripts,
