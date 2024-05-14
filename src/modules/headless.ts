@@ -58,12 +58,12 @@ export async function getHeadlessFeatures() {
           IS_BLINK
           && 'permissions' in navigator
           && await (async () => {
-					  const res = await navigator.permissions.query({ name: 'notifications' })
-					  return (
-					    res.state === 'prompt'
-					    && 'Notification' in window
-					    && Notification.permission === 'denied'
-					  )
+            const res = await navigator.permissions.query({ name: 'notifications' })
+            return (
+              res.state === 'prompt'
+              && 'Notification' in window
+              && Notification.permission === 'denied'
+            )
           })()
         ),
         noPlugins: IS_BLINK && navigator.plugins.length === 0,

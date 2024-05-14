@@ -42,9 +42,9 @@ function isFontOSBad(userAgentOS: string, fonts: string[]): boolean {
 
   if (isLikeWindows && userAgentOS !== PlatformClassifier.WINDOWS)
     return true
-	 else if (isLikeApple && userAgentOS !== PlatformClassifier.APPLE)
+  else if (isLikeApple && userAgentOS !== PlatformClassifier.APPLE)
     return true
-	 else if (isLikeLinux && userAgentOS !== PlatformClassifier.LINUX)
+  else if (isLikeLinux && userAgentOS !== PlatformClassifier.LINUX)
     return true
 
   return false
@@ -174,23 +174,23 @@ export async function getFont() {
   const getPixelEmojis = ({ doc, id, emojis }: { doc: Document, id: string, emojis: string[] }) => {
     try {
       patch(doc.getElementById(id), html`
-				<div id="pixel-emoji-container">
-				<style>
-					.pixel-emoji {
-						font-family: ${CSS_FONT_FAMILY};
-						font-size: 200px !important;
-						height: auto;
-						position: absolute !important;
-						transform: scale(1.000999);
-					}
-					</style>
-					${
-						emojis.map((emoji: string) => {
-							return `<div class="pixel-emoji">${emoji}</div>`
-						}).join('')
-					}
-				</div>
-			`)
+        <div id="pixel-emoji-container">
+        <style>
+          .pixel-emoji {
+            font-family: ${CSS_FONT_FAMILY};
+            font-size: 200px !important;
+            height: auto;
+            position: absolute !important;
+            transform: scale(1.000999);
+          }
+          </style>
+          ${
+            emojis.map((emoji: string) => {
+              return `<div class="pixel-emoji">${emoji}</div>`
+            }).join('')
+          }
+        </div>
+      `)
 
       // get emoji set and system
       const getEmojiDimensions = (style?: CSSStyleDeclaration) => {

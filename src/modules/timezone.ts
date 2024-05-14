@@ -485,7 +485,8 @@ export function getTimezone() {
       second: 'numeric',
     }
     const minute = 60000
-    let formatter; let summer
+    let formatter
+    let summer
     if (city) {
       const options = {
         ...format,

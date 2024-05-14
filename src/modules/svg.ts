@@ -19,35 +19,35 @@ export async function getSVG() {
 
     // patch div
     patch(divElement, html`
-			<div id="svg-container">
-				<style>
-				#svg-container {
-					position: absolute;
-					left: -9999px;
-					height: auto;
-				}
-				#svg-container .shift-svg {
-					transform: scale(1.000999) !important;
-				}
-				.svgrect-emoji {
-					font-family: ${CSS_FONT_FAMILY};
-					font-size: 200px !important;
-					height: auto;
-					position: absolute !important;
-					transform: scale(1.000999);
-				}
-				</style>
-				<svg>
-					<g id="svgBox">
-						${
-							EMOJIS.map((emoji) => {
-								return `<text x="32" y="32" class="svgrect-emoji">${emoji}</text>`
-							}).join('')
-						}
-					</g>
-				</svg>
-			</div>
-		`)
+      <div id="svg-container">
+        <style>
+        #svg-container {
+          position: absolute;
+          left: -9999px;
+          height: auto;
+        }
+        #svg-container .shift-svg {
+          transform: scale(1.000999) !important;
+        }
+        .svgrect-emoji {
+          font-family: ${CSS_FONT_FAMILY};
+          font-size: 200px !important;
+          height: auto;
+          position: absolute !important;
+          transform: scale(1.000999);
+        }
+        </style>
+        <svg>
+          <g id="svgBox">
+            ${
+              EMOJIS.map((emoji) => {
+                return `<text x="32" y="32" class="svgrect-emoji">${emoji}</text>`
+              }).join('')
+            }
+          </g>
+        </svg>
+      </div>
+    `)
 
     // SVG
     const reduceToObject = (nativeObj: any) => {

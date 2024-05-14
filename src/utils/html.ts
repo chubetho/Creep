@@ -45,29 +45,29 @@ function modal(name: string, result: string[], linkname = 'details') {
     return ''
 
   return `
-		<style>
-		.modal-${name}:checked ~ .modal-container {
-			visibility: visible;
-			opacity: 1;
-			animation: show 0.1s linear both;
-		}
-		.modal-${name}:checked ~ .modal-container .modal-content {
-			animation: enter 0.2s ease both
-		}
-		.modal-${name}:not(:checked) ~ .modal-container {
-			visibility: hidden;
-		}
-		</style>
-		<input type="radio" id="toggle-open-${name}" class="modal-${name}" name="modal-${name}"/>
-		<label class="modal-open-btn" for="toggle-open-${name}" onclick="">${linkname}</label>
-		<label class="modal-container" for="toggle-close-${name}" onclick="">
-			<label class="modal-content" for="toggle-open-${name}" onclick="">
-				<input type="radio" id="toggle-close-${name}" name="modal-${name}"/>
-				<label class="modal-close-btn" for="toggle-close-${name}" onclick="">×</label>
-				<div>${result}</div>
-			</label>
-		</label>
-	`
+    <style>
+    .modal-${name}:checked ~ .modal-container {
+      visibility: visible;
+      opacity: 1;
+      animation: show 0.1s linear both;
+    }
+    .modal-${name}:checked ~ .modal-container .modal-content {
+      animation: enter 0.2s ease both
+    }
+    .modal-${name}:not(:checked) ~ .modal-container {
+      visibility: hidden;
+    }
+    </style>
+    <input type="radio" id="toggle-open-${name}" class="modal-${name}" name="modal-${name}"/>
+    <label class="modal-open-btn" for="toggle-open-${name}" onclick="">${linkname}</label>
+    <label class="modal-container" for="toggle-close-${name}" onclick="">
+      <label class="modal-content" for="toggle-open-${name}" onclick="">
+        <input type="radio" id="toggle-close-${name}" name="modal-${name}"/>
+        <label class="modal-close-btn" for="toggle-close-${name}" onclick="">×</label>
+        <div>${result}</div>
+      </label>
+    </label>
+  `
 }
 
 export { patch, html, HTMLNote, pluralify, getDiffs, count, modal }

@@ -32,7 +32,7 @@ export function getCssMedia() {
       return { width, height }
 
     const rangeLen = 1000
-		;[...Array(10)].find((_, i) => {
+    ;[...Array(10)].find((_, i) => {
       if (!widthMatch)
         widthMatch = query({ body, type: 'width', rangeStart: i * rangeLen, rangeLen })
 
@@ -136,40 +136,40 @@ export function getCssMedia() {
     }
 
     body.innerHTML = `
-		<style>
-		@media (prefers-reduced-motion: no-preference) {body {--prefers-reduced-motion: no-preference}}
-		@media (prefers-reduced-motion: reduce) {body {--prefers-reduced-motion: reduce}}
-		@media (prefers-color-scheme: light) {body {--prefers-color-scheme: light}}
-		@media (prefers-color-scheme: dark) {body {--prefers-color-scheme: dark}}
-		@media (monochrome) {body {--monochrome: monochrome}}
-		@media (monochrome: 0) {body {--monochrome: non-monochrome}}
-		@media (inverted-colors: inverted) {body {--inverted-colors: inverted}}
-		@media (inverted-colors: none) {body {--inverted-colors: none}}
-		@media (forced-colors: none) {body {--forced-colors: none}}
-		@media (forced-colors: active) {body {--forced-colors: active}}
-		@media (any-hover: hover) {body {--any-hover: hover}}
-		@media (any-hover: none) {body {--any-hover: none}}
-		@media (hover: hover) {body {--hover: hover}}
-		@media (hover: none) {body {--hover: none}}
-		@media (any-pointer: fine) {body {--any-pointer: fine}}
-		@media (any-pointer: coarse) {body {--any-pointer: coarse}}
-		@media (any-pointer: none) {body {--any-pointer: none}}
-		@media (pointer: fine) {body {--pointer: fine}}
-		@media (pointer: coarse) {body {--pointer: coarse}}
-		@media (pointer: none) {body {--pointer: none}}
-		@media (device-aspect-ratio: ${deviceAspectRatio}) {body {--device-aspect-ratio: ${deviceAspectRatio}}}
-		@media (device-width: ${width}px) and (device-height: ${height}px) {body {--device-screen: ${width} x ${height}}}
-		@media (display-mode: fullscreen) {body {--display-mode: fullscreen}}
-		@media (display-mode: standalone) {body {--display-mode: standalone}}
-		@media (display-mode: minimal-ui) {body {--display-mode: minimal-ui}}
-		@media (display-mode: browser) {body {--display-mode: browser}}
-		@media (color-gamut: srgb) {body {--color-gamut: srgb}}
-		@media (color-gamut: p3) {body {--color-gamut: p3}}
-		@media (color-gamut: rec2020) {body {--color-gamut: rec2020}}
-		@media (orientation: landscape) {body {--orientation: landscape}}
-		@media (orientation: portrait) {body {--orientation: portrait}}
-		</style>
-		`
+    <style>
+    @media (prefers-reduced-motion: no-preference) {body {--prefers-reduced-motion: no-preference}}
+    @media (prefers-reduced-motion: reduce) {body {--prefers-reduced-motion: reduce}}
+    @media (prefers-color-scheme: light) {body {--prefers-color-scheme: light}}
+    @media (prefers-color-scheme: dark) {body {--prefers-color-scheme: dark}}
+    @media (monochrome) {body {--monochrome: monochrome}}
+    @media (monochrome: 0) {body {--monochrome: non-monochrome}}
+    @media (inverted-colors: inverted) {body {--inverted-colors: inverted}}
+    @media (inverted-colors: none) {body {--inverted-colors: none}}
+    @media (forced-colors: none) {body {--forced-colors: none}}
+    @media (forced-colors: active) {body {--forced-colors: active}}
+    @media (any-hover: hover) {body {--any-hover: hover}}
+    @media (any-hover: none) {body {--any-hover: none}}
+    @media (hover: hover) {body {--hover: hover}}
+    @media (hover: none) {body {--hover: none}}
+    @media (any-pointer: fine) {body {--any-pointer: fine}}
+    @media (any-pointer: coarse) {body {--any-pointer: coarse}}
+    @media (any-pointer: none) {body {--any-pointer: none}}
+    @media (pointer: fine) {body {--pointer: fine}}
+    @media (pointer: coarse) {body {--pointer: coarse}}
+    @media (pointer: none) {body {--pointer: none}}
+    @media (device-aspect-ratio: ${deviceAspectRatio}) {body {--device-aspect-ratio: ${deviceAspectRatio}}}
+    @media (device-width: ${width}px) and (device-height: ${height}px) {body {--device-screen: ${width} x ${height}}}
+    @media (display-mode: fullscreen) {body {--display-mode: fullscreen}}
+    @media (display-mode: standalone) {body {--display-mode: standalone}}
+    @media (display-mode: minimal-ui) {body {--display-mode: minimal-ui}}
+    @media (display-mode: browser) {body {--display-mode: browser}}
+    @media (color-gamut: srgb) {body {--color-gamut: srgb}}
+    @media (color-gamut: p3) {body {--color-gamut: p3}}
+    @media (color-gamut: rec2020) {body {--color-gamut: rec2020}}
+    @media (orientation: landscape) {body {--orientation: landscape}}
+    @media (orientation: portrait) {body {--orientation: portrait}}
+    </style>
+    `
 
     const style = getComputedStyle(body)
     const mediaCSS = {

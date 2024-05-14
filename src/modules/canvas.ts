@@ -70,11 +70,11 @@ function getPixelMods() {
         data: [red2, green2, blue2, alpha2],
       } = context2.getImageData(x, y, 1, 1) || {}
       const colorsDisplay = `
-				${red !== red2 ? red2 : 255},
-				${green !== green2 ? green2 : 255},
-				${blue !== blue2 ? blue2 : 255},
-				${alpha !== alpha2 ? alpha2 : 1}
-			`
+        ${red !== red2 ? red2 : 255},
+        ${green !== green2 ? green2 : 255},
+        ${blue !== blue2 ? blue2 : 255},
+        ${alpha !== alpha2 ? alpha2 : 1}
+      `
       contextDisplay2.fillStyle = `rgba(${colorsDisplay})`
       contextDisplay2.fillRect(
         x * visualMultiplier,
@@ -89,7 +89,7 @@ function getPixelMods() {
     const patternDiffs = []
     const rgbaChannels = new Set()
 
-		;[...Array(pattern1.length)].forEach((_, i) => {
+    ;[...Array(pattern1.length)].forEach((_, i) => {
       const pixelColor1 = pattern1[i]
       const pixelColor2 = pattern2[i]
       if (pixelColor1 !== pixelColor2) {
@@ -485,9 +485,9 @@ export async function getCanvas() {
     Analysis.imageDataLowEntropy = imageDataLowEntropy
     if (IS_BLINK && !KnownImageData.BLINK.includes(imageDataLowEntropy))
       LowerEntropy.CANVAS = true
-		 else if (IS_GECKO && !KnownImageData.GECKO.includes(imageDataLowEntropy))
+    else if (IS_GECKO && !KnownImageData.GECKO.includes(imageDataLowEntropy))
       LowerEntropy.CANVAS = true
-		 else if (IS_WEBKIT && !KnownImageData.WEBKIT.includes(imageDataLowEntropy))
+    else if (IS_WEBKIT && !KnownImageData.WEBKIT.includes(imageDataLowEntropy))
       LowerEntropy.CANVAS = true
 
     return {

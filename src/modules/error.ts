@@ -1,4 +1,6 @@
 /* eslint-disable no-new-func */
+/* eslint-disable style/max-statements-per-line */
+
 function getErrors(errFns: (() => void)[]) {
   const errors: string[] = []
   let i; const len = errFns.length
@@ -7,7 +9,10 @@ function getErrors(errFns: (() => void)[]) {
       errFns[i]()
     }
     catch (error) {
-      errors.push((err as Error).message)
+      if (error instanceof Error)
+        errors.push(error.message)
+      else
+        errors.push('')
     }
   }
   return errors

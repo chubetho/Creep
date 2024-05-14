@@ -426,7 +426,7 @@ function computeWindowsRelease({ platform, platformVersion, fontPlatformVersion 
         : (release[platformVersion] || 'Unknown')
   )
   return (
-		`Windows ${version} [${platformVersion}]`
+    `Windows ${version} [${platformVersion}]`
   )
 }
 
@@ -478,8 +478,8 @@ function getUserAgentRestored({ userAgent, userAgentData, fontPlatformVersion }:
     .replace(/(X11; CrOS x86_64)/, (_, p1) => `${p1} ${platformVersion}`)
     .replace(/(Linux; Android )(10)(; K|)/, (_, p1, __, p3) => {
       return `${p1}${versionNumber}${
-				!p3 ? '' : deviceModel ? `; ${deviceModel}` : '; K'
-			}`
+        !p3 ? '' : deviceModel ? `; ${deviceModel}` : '; K'
+      }`
     })
     .replace(/(Macintosh; Intel Mac OS X )(10_15_7)/, (_, p1) => {
       const isOSX = macVersion.startsWith('10')
@@ -599,55 +599,55 @@ const EMOJIS = [
 ].map(emojiCode => String.fromCodePoint(...emojiCode))
 
 const CSS_FONT_FAMILY = `
-	'Segoe Fluent Icons',
-	'Ink Free',
-	'Bahnschrift',
-	'Segoe MDL2 Assets',
-	'HoloLens MDL2 Assets',
-	'Leelawadee UI',
-	'Javanese Text',
-	'Segoe UI Emoji',
-	'Aldhabi',
-	'Gadugi',
-	'Myanmar Text',
-	'Nirmala UI',
-	'Lucida Console',
-	'Cambria Math',
-	'Bai Jamjuree',
-	'Chakra Petch',
-	'Charmonman',
-	'Fahkwang',
-	'K2D',
-	'Kodchasan',
-	'KoHo',
-	'Sarabun',
-	'Srisakdi',
-	'Galvji',
-	'MuktaMahee Regular',
-	'InaiMathi Bold',
-	'American Typewriter Semibold',
-	'Futura Bold',
-	'SignPainter-HouseScript Semibold',
-	'PingFang HK Light',
-	'Kohinoor Devanagari Medium',
-	'Luminari',
-	'Geneva',
-	'Helvetica Neue',
-	'Droid Sans Mono',
-	'Dancing Script',
-	'Roboto',
-	'Ubuntu',
-	'Liberation Mono',
-	'Source Code Pro',
-	'DejaVu Sans',
-	'OpenSymbol',
-	'Chilanka',
-	'Cousine',
-	'Arimo',
-	'Jomolhari',
-	'MONO',
-	'Noto Color Emoji',
-	sans-serif !important
+  'Segoe Fluent Icons',
+  'Ink Free',
+  'Bahnschrift',
+  'Segoe MDL2 Assets',
+  'HoloLens MDL2 Assets',
+  'Leelawadee UI',
+  'Javanese Text',
+  'Segoe UI Emoji',
+  'Aldhabi',
+  'Gadugi',
+  'Myanmar Text',
+  'Nirmala UI',
+  'Lucida Console',
+  'Cambria Math',
+  'Bai Jamjuree',
+  'Chakra Petch',
+  'Charmonman',
+  'Fahkwang',
+  'K2D',
+  'Kodchasan',
+  'KoHo',
+  'Sarabun',
+  'Srisakdi',
+  'Galvji',
+  'MuktaMahee Regular',
+  'InaiMathi Bold',
+  'American Typewriter Semibold',
+  'Futura Bold',
+  'SignPainter-HouseScript Semibold',
+  'PingFang HK Light',
+  'Kohinoor Devanagari Medium',
+  'Luminari',
+  'Geneva',
+  'Helvetica Neue',
+  'Droid Sans Mono',
+  'Dancing Script',
+  'Roboto',
+  'Ubuntu',
+  'Liberation Mono',
+  'Source Code Pro',
+  'DejaVu Sans',
+  'OpenSymbol',
+  'Chilanka',
+  'Cousine',
+  'Arimo',
+  'Jomolhari',
+  'MONO',
+  'Noto Color Emoji',
+  sans-serif !important
 `
 
 const hashSlice = (x: string) => !x ? x : x.slice(0, 8)
