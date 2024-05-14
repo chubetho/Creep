@@ -1,7 +1,7 @@
 # Creep
 
-- [ ] audio
-- [ ] canvas
+- [x] audio
+- [x] canvas
 - [x] css
 - [ ] cssmedia
 - [x] document
@@ -19,12 +19,11 @@
 - [ ] resistance
 - [ ] samples
 - [ ] screen
-- [ ] speech
+- [x] speech
 - [ ] status
-- [ ] svg
-- [ ] timezone
+- [x] svg
+- [x] timezone
 - [ ] trash
 - [ ] webgl
 - [ ] webrtc
-- [ ] window
-- [ ] worker
+- [x] window

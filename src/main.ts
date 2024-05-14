@@ -1,4 +1,7 @@
 import './style.css'
-import { getCss } from './modules'
+import { getSVG } from './modules'
 
-getCss()
+(async () => {
+  const a = await getSVG()
+  console.log(a)
+})()
