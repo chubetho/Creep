@@ -3,7 +3,6 @@ import { PARENT_PHANTOM } from '../utils/lies'
 export function getCss() {
   const computedStyle = computeStyle()
   const system = getSystemStyles(PARENT_PHANTOM)
-  console.log({ computedStyle, system })
   return { computedStyle, system }
 }
 
