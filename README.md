@@ -3,27 +3,23 @@
 - [x] audio
 - [x] canvas
 - [x] css
-- [ ] cssmedia
+- [x] cssmedia
 - [x] document
-- [ ] domrect
-- [ ] engine
-- [ ] errors
-- [ ] features
-- [ ] fonts
-- [ ] headless
-- [ ] intl
-- [ ] math
-- [ ] media
-- [ ] navigator
-- [ ] prediction
-- [ ] resistance
-- [ ] samples
-- [ ] screen
+- [x] domrect
+- [x] error
+- [x] features
+- [x] fonts
+- [x] headless
+- [x] intl
+- [x] math
+- [x] media
+- [x] navigator
+- [x] resistance
+- [x] screen
 - [x] speech
-- [ ] status
+- [x] status
 - [x] svg
 - [x] timezone
-- [ ] trash
 - [ ] webgl
-- [ ] webrtc
+- [x] webrtc
 - [x] window

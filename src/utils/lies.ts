@@ -9,7 +9,7 @@ import { IS_BLINK, IS_GECKO, IS_WEBKIT, IS_WORKER_SCOPE } from './helpers'
 try {
   speechSynthesis.getVoices()
 }
-catch (err) {}
+catch (error) {}
 
 // Collect lies detected
 function createLieRecords() {

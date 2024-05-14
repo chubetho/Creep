@@ -4,7 +4,7 @@ function hasTouch() {
   try {
     return 'ontouchstart' in window && !!document.createEvent('TouchEvent')
   }
-  catch (err) {
+  catch (error) {
     return false
   }
 }

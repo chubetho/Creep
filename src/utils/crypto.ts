@@ -6,3 +6,8 @@ export function hashMini(x: any) {
   const str = `0000000${(hash >>> 0).toString(16)}`
   return str.substring(str.length - 8)
 }
+
+export const instanceId = (
+  String.fromCharCode(Math.random() * 26 + 97)
+  + Math.random().toString(36).slice(-7)
+)

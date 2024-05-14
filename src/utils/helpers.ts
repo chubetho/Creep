@@ -7,8 +7,8 @@ function getEngine() {
   try {
     (-1).toFixed(-1)
   }
-  catch (err) {
-    return (err as Error).message.length + (`${x}`).split(x.name).join('').length
+  catch (error) {
+    return (error as Error).message.length + (`${x}`).split(x.name).join('').length
   }
 }
 
@@ -51,7 +51,7 @@ function getBraveMode() {
           OfflineAudioContext || webkitOfflineAudioContext
         )
       }
-      catch (err) { }
+      catch (error) { }
 
       if (!window.OfflineAudioContext)
         return false
@@ -80,7 +80,7 @@ function getBraveMode() {
     mode.allow = true
     return mode
   }
-  catch (e) {
+  catch (error) {
     mode.unknown = true
     return mode
   }

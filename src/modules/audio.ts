@@ -85,7 +85,7 @@ export async function getAudio() {
         dynamicsCompressor.knee.value = 40
         dynamicsCompressor.attack.value = 0
       }
-      catch (err) {}
+      catch (error) {}
 
       oscillator.connect(dynamicsCompressor)
       dynamicsCompressor.connect(analyser)

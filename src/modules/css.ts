@@ -152,5 +152,5 @@ function getSystemStyles(el?: Element) {
     }
     return getStyles(el)
   }
-  catch (e) {}
+  catch (error) {}
 }

@@ -1,7 +1,6 @@
 import './style.css'
-import { getSVG } from './modules'
+import { getWebGl } from './modules'
 
 (async () => {
-  const a = await getSVG()
-  console.log(a)
+  console.log(await getWebGl())
 })()
