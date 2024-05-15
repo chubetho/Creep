@@ -7,6 +7,6 @@
   "scripts": {
     "build": "bun --filter './lib' build",
     "playground": "bun --filter './playground' dev",
-    "postinstall": "bun run build"
+    "postinstall": "bun --filter './lib' vite build"
   }
 }

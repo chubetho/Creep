@@ -18,7 +18,6 @@
   "scripts": {
     "dev": "bun run vite",
     "build": "tsc && bun run vite build",
-    "preview": "bun run vite preview",
     "vite": "bunx --bun vite",
     "lint": "eslint ."
   },
