@@ -69,7 +69,7 @@ function getBraveMode() {
       return mode
     }
     // standard and strict mode do not have chrome plugins
-    const chromePlugins = /(Chrom(e|ium)|Microsoft Edge) PDF (Plugin|Viewer)/
+    const chromePlugins = /(?:Chrom(?:e|ium)|Microsoft Edge) PDF (?:Plugin|Viewer)/
     const pluginsList = [...navigator.plugins]
     const hasChromePlugins = pluginsList
       .filter(plugin => chromePlugins.test(plugin.name)).length === 2
@@ -145,25 +145,25 @@ function getBraveUnprotectedParameters(parameters: Record<string, string>) {
 function getOS(userAgent: string) {
   const os = (
     // order is important
-    /windows phone/ig.test(userAgent)
+    /windows phone/i.test(userAgent)
       ? 'Windows Phone'
-      : /win(dows|16|32|64|95|98|nt)|wow64/ig.test(userAgent)
+      : /win(?:dows|16|32|64|95|98|nt)|wow64/i.test(userAgent)
         ? 'Windows'
-        : /android/ig.test(userAgent)
+        : /android/i.test(userAgent)
           ? 'Android'
-          : /cros/ig.test(userAgent)
+          : /cros/i.test(userAgent)
             ? 'Chrome OS'
-            : /linux/ig.test(userAgent)
+            : /linux/i.test(userAgent)
               ? 'Linux'
-              : /ipad/ig.test(userAgent)
+              : /ipad/i.test(userAgent)
                 ? 'iPad'
-                : /iphone/ig.test(userAgent)
+                : /iphone/i.test(userAgent)
                   ? 'iPhone'
-                  : /ipod/ig.test(userAgent)
+                  : /ipod/i.test(userAgent)
                     ? 'iPod'
-                    : /ios/ig.test(userAgent)
+                    : /ios/i.test(userAgent)
                       ? 'iOS'
-                      : /mac/ig.test(userAgent)
+                      : /mac/i.test(userAgent)
                         ? 'Mac'
                         : 'Other'
   )
@@ -174,11 +174,11 @@ function getReportedPlatform(userAgent: PlatformClassifierValue, platform?: stri
   // user agent os lie
   const userAgentOS = (
     // order is important
-    /win(dows|16|32|64|95|98|nt)|wow64/ig.test(userAgent)
+    /win(?:dows|16|32|64|95|98|nt)|wow64/i.test(userAgent)
       ? PlatformClassifier.WINDOWS
-      : /android|linux|cros/ig.test(userAgent)
+      : /android|linux|cros/i.test(userAgent)
         ? PlatformClassifier.LINUX
-        : /(i(os|p(ad|hone|od)))|mac/ig.test(userAgent)
+        : /i(?:os|p(?:ad|hone|od))|mac/i.test(userAgent)
           ? PlatformClassifier.APPLE
           : PlatformClassifier.OTHER
   )
@@ -188,11 +188,11 @@ function getReportedPlatform(userAgent: PlatformClassifierValue, platform?: stri
 
   const platformOS = (
     // order is important
-    /win/ig.test(platform)
+    /win/i.test(platform)
       ? PlatformClassifier.WINDOWS
-      : /android|arm|linux/ig.test(platform)
+      : /android|arm|linux/i.test(platform)
         ? PlatformClassifier.LINUX
-        : /(i(os|p(ad|hone|od)))|mac/ig.test(platform)
+        : /i(?:os|p(?:ad|hone|od))|mac/i.test(platform)
           ? PlatformClassifier.APPLE
           : PlatformClassifier.OTHER
   )
@@ -202,19 +202,19 @@ const { userAgent: navUserAgent, platform: navPlatform } = self.navigator || {}
 const [USER_AGENT_OS, PLATFORM_OS] = getReportedPlatform(navUserAgent as PlatformClassifierValue, navPlatform)
 
 function decryptUserAgent({ ua, os, isBrave }: { ua: string, os: string, isBrave: boolean }) {
-  const apple = /ipad|iphone|ipod|ios|mac/ig.test(os)
-  const isOpera = /OPR\//g.test(ua)
-  const isVivaldi = /Vivaldi/g.test(ua)
-  const isDuckDuckGo = /DuckDuckGo/g.test(ua)
-  const isYandex = /YaBrowser/g.test(ua)
+  const apple = /ipad|iphone|ipod|ios|mac/i.test(os)
+  const isOpera = /OPR\//.test(ua)
+  const isVivaldi = /Vivaldi/.test(ua)
+  const isDuckDuckGo = /DuckDuckGo/.test(ua)
+  const isYandex = /YaBrowser/.test(ua)
   const paleMoon = ua.match(/(palemoon)\/(\d+)./i)
   const edge = ua.match(/(edgios|edg|edge|edga)\/(\d+)./i)
   const edgios = edge && /edgios/i.test(edge[1])
   const chromium = ua.match(/(crios|chrome)\/(\d+)./i)
   const firefox = ua.match(/(fxios|firefox)\/(\d+)./i)
   const likeSafari = (
-    /AppleWebKit/g.test(ua)
-    && /Safari/g.test(ua)
+    /AppleWebKit/.test(ua)
+    && /Safari/.test(ua)
   )
   const safari = (
     likeSafari
@@ -265,24 +265,24 @@ function getUserAgentPlatform({ userAgent, excludeBuild = true }: { userAgent: s
     return 'unknown'
 
   // patterns
-  const nonPlatformParenthesis = /\((khtml|unlike|vizio|like gec|internal dummy|org\.eclipse|openssl|ipv6|via translate|safari|cardamon).+|xt\d+\)/ig
+  const nonPlatformParenthesis = /\((khtml|unlike|vizio|like gec|internal dummy|org\.eclipse|openssl|ipv6|via translate|safari|cardamon).+|xt\d+\)/gi
   const parenthesis = /\((.+)\)/
-  const android = /((android).+)/i
-  const androidNoise = /^(linux|[a-z]|wv|mobile|[a-z]{2}(-|_)[a-z]{2}|[a-z]{2})$|windows|(rv:|trident|webview|iemobile).+/i
+  const android = /android.+/i
+  const androidNoise = /^(?:linux|[a-z]|mobile|[a-z]{2}(?:-|_)[a-z]{2}|[a-z]{2})$|windows|(?:rv:|trident|webview|iemobile).+/i
   const androidBuild = /build\/.+\s|\sbuild\/.+/i
-  const androidRelease = /android( |-)\d+/i
-  const windows = /((windows).+)/i
-  const windowsNoise = /^(windows|ms(-|)office|microsoft|compatible|[a-z]|x64|[a-z]{2}(-|_)[a-z]{2}|[a-z]{2})$|(rv:|outlook|ms(-|)office|microsoft|trident|\.net|msie|httrack|media center|infopath|aol|opera|iemobile|webbrowser).+/i
+  const androidRelease = /android(?: |-)\d+/i
+  const windows = /windows.+/i
+  const windowsNoise = /^(?:windows|ms-?office|microsoft|compatible|[a-z]|x64|[a-z]{2}(?:-|_)[a-z]{2}|[a-z]{2})$|(?:rv:|outlook|ms-?office|microsoft|trident|\.net|msie|httrack|media center|infopath|aol|opera|iemobile|webbrowser).+/i
   const windows64bitCPU = /w(ow|in)64/i
   const cros = /cros/i
-  const crosNoise = /^([a-z]|x11|[a-z]{2}(-|_)[a-z]{2}|[a-z]{2})$|(rv:|trident).+/i
-  const crosBuild = /\d+\.\d+\.\d+/i
+  const crosNoise = /^(?:[a-z]|x11|[a-z]{2}(?:-|_)[a-z]{2}|[a-z]{2})$|(?:rv:|trident).+/i
+  const crosBuild = /\d+\.\d+\.\d+/
   const linux = /linux|x11|ubuntu|debian/i
-  const linuxNoise = /^([a-z]|x11|unknown|compatible|[a-z]{2}(-|_)[a-z]{2}|[a-z]{2})$|(rv:|java|oracle|\+http|http|unknown|mozilla|konqueror|valve).+/i
-  const apple = /(cpu iphone|cpu os|iphone os|mac os|macos|intel os|ppc mac).+/i
-  const appleNoise = /^([a-z]|macintosh|compatible|mimic|[a-z]{2}(-|_)[a-z]{2}|[a-z]{2}|rv|\d+\.\d+)$|(rv:|silk|valve).+/i
-  const appleRelease = /(ppc |intel |)(mac|mac |)os (x |x|)(\d{2}(_|\.)\d{1,2}|\d{2,})/i
-  const otherOS = /((symbianos|nokia|blackberry|morphos|mac).+)|\/linux|freebsd|symbos|series \d+|win\d+|unix|hp-ux|bsdi|bsd|x86_64/i
+  const linuxNoise = /^(?:[a-z]|x11|unknown|compatible|[a-z]{2}(?:-|_)[a-z]{2}|[a-z]{2})$|(?:rv:|java|oracle|\+http|http|unknown|mozilla|konqueror|valve).+/i
+  const apple = /(?:cpu iphone|cpu os|iphone os|mac os|macos|intel os|ppc mac).+/i
+  const appleNoise = /^(?:[a-z]|macintosh|compatible|mimic|[a-z]{2}(?:-|_)[a-z]{2}|[a-z]{2}|\d+\.\d+)$|(?:rv:|silk|valve).+/i
+  const appleRelease = /(?:ppc |intel )?(?:mac|mac )?os (?:x |x)?(?:\d{2}(?:_|\.)\d{1,2}|\d{2,})/i
+  const otherOS = /(?:symbianos|nokia|blackberry|morphos|mac).+|\/linux|freebsd|symbos|series \d+|win\d+|unix|hp-ux|bsdi|bsd|x86_64/i
 
   const isDevice = (list: string[], device: RegExp) => list.filter(x => device.test(x)).length
 
@@ -375,7 +375,7 @@ function getUserAgentPlatform({ userAgent, excludeBuild = true }: { userAgent: s
         })
         .filter(x => !(appleNoise.test(x)))
         .join(' ')
-        .replace(/\slike mac.+/ig, '')
+        .replace(/\slike mac.+/gi, '')
         .trim().replace(/\s{2,}/, ' ')
     }
     else {
@@ -473,7 +473,7 @@ function getUserAgentRestored({ userAgent, userAgentData, fontPlatformVersion }:
   }
   const macVersion = platformVersion.replace(/\./g, '_')
   const userAgentRestored = userAgent
-    .replace(/(Chrome\/)([^\s]+)/, (_, p1, p2) => `${p1}${isGoogleChrome ? uaFullVersion : p2}`)
+    .replace(/(Chrome\/)(\S+)/, (_, p1, p2) => `${p1}${isGoogleChrome ? uaFullVersion : p2}`)
     .replace(/Windows NT 10.0/, `Windows ${windowsVersionMap[windowsVersion] || windowsVersion}`)
     .replace(/(X11; CrOS x86_64)/, (_, p1) => `${p1} ${platformVersion}`)
     .replace(/(Linux; Android )(10)(; K|)/, (_, p1, __, p3) => {
@@ -655,7 +655,7 @@ const hashSlice = (x: string) => !x ? x : x.slice(0, 8)
 function getGpuBrand(gpu: string): string | null {
   if (!gpu)
     return null
-  const gpuBrandMatcher = /(adreno|amd|apple|intel|llvm|mali|microsoft|nvidia|parallels|powervr|samsung|swiftshader|virtualbox|vmware)/i
+  const gpuBrandMatcher = /adreno|amd|apple|intel|llvm|mali|microsoft|nvidia|parallels|powervr|samsung|swiftshader|virtualbox|vmware/i
 
   const brand = (
     /radeon/i.test(gpu)

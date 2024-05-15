@@ -245,8 +245,8 @@ function getGpuBrand(gpu: string) {
 // https://developer.mozilla.org/en-US/docs/Web/API/WebGL2RenderingContext
 function getWebGL(contextType: string) {
   let data = {}
-  const isWebGL = /^(experimental-)?webgl$/
-  const isWebGL2 = /^(experimental-)?webgl2$/
+  const isWebGL = /^(?:experimental-)?webgl$/
+  const isWebGL2 = /^(?:experimental-)?webgl2$/
   const supportsWebGL = isWebGL.test(contextType) && 'WebGLRenderingContext' in window
   const supportsWebGL2 = isWebGL2.test(contextType) && 'WebGLRenderingContext' in window
 
@@ -326,7 +326,7 @@ function getWebGL(contextType: string) {
       parameters.STENCIL_BITS,
     ]
 
-    parameters.DIRECT_3D = /Direct3D|D3D(\d+)/.test(parameters.UNMASKED_RENDERER_WEBGL)
+    parameters.DIRECT_3D = /Direct3D|D3D\d+/.test(parameters.UNMASKED_RENDERER_WEBGL)
   }
   catch (error) {
     console.error(error)

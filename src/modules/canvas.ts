@@ -240,7 +240,7 @@ function paintCanvas({
   const drawOutlineOfText = (context: CanvasRenderingContext2D, offset: number, area: { width: number, height: number }, getNextSeed: () => number) => {
     const { width, height } = area
     const fontSize = 2.99
-    context.font = `${height / fontSize}px ${cssFontFamily.replace(/!important/gm, '')}`
+    context.font = `${height / fontSize}px ${cssFontFamily.replace(/!important/g, '')}`
     context.strokeText(
       '👾A',
       patchSeed(getNextSeed(), offset, width),
@@ -370,7 +370,7 @@ export async function getCanvas() {
     const mods = getPixelMods()
 
     // TextMetrics: get emoji set and system
-    context.font = `10px ${CSS_FONT_FAMILY.replace(/!important/gm, '')}`
+    context.font = `10px ${CSS_FONT_FAMILY.replace(/!important/g, '')}`
     const pattern = new Set<string>()
     const emojiSet = EMOJIS.reduce((emojiSet, emoji) => {
       const {
@@ -425,7 +425,7 @@ export async function getCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height)
     canvas.width = 50
     canvas.height = 50
-    context.font = `50px ${CSS_FONT_FAMILY.replace(/!important/gm, '')}`
+    context.font = `50px ${CSS_FONT_FAMILY.replace(/!important/g, '')}`
     context.fillText('A', 7, 37)
     const textURI = canvas.toDataURL()
 
@@ -434,7 +434,7 @@ export async function getCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height)
     canvas.width = 50
     canvas.height = 50
-    context.font = `35px ${CSS_FONT_FAMILY.replace(/!important/gm, '')}`
+    context.font = `35px ${CSS_FONT_FAMILY.replace(/!important/g, '')}`
     context.fillText('👾', 0, 37)
     const emojiURI = canvas.toDataURL()
 

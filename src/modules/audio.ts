@@ -221,10 +221,8 @@ export async function getAudio() {
     }
 
     const noiseFactor = getNoiseFactor()
-    const noise = (
-      noiseFactor || [...new Set(bins.slice(0, 100))]
-        .reduce((acc, n) => acc += n, 0)
-    )
+    const noise = noiseFactor || [...new Set(bins.slice(0, 100))]
+      .reduce((acc, n) => acc += n, 0)
 
     return {
       totalUniqueSamples,
