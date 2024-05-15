@@ -1,5 +1,4 @@
 import './style.css'
-import { hashify } from './utils/crypto'
 
 (async () => {
   // const modules = await import('./modules')

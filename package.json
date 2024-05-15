@@ -1,18 +1,6 @@
 {
   "name": "creep",
   "type": "module",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "bun run vite",
-    "build": "tsc && bun run vite build",
-    "preview": "bun run vite preview",
-    "vite": "bunx --bun vite"
-  },
-  "devDependencies": {
-    "@antfu/eslint-config": "^2.18.0",
-    "eslint": "^9.2.0",
-    "typescript": "^5.4.5",
-    "vite": "^5.2.11"
-  }
+  "module": "index.ts",
+  "workspaces": ["lib", "playground"]
 }
