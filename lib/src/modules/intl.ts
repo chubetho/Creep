@@ -43,7 +43,6 @@ export async function getIntl() {
     })()
 
     const listFormat = (() => {
-      // @ts-expect-error no types
       return new Intl.ListFormat(undefined, {
         style: 'long',
         type: 'disjunction',
