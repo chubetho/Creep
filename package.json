@@ -1,6 +1,12 @@
 {
   "name": "creep",
   "type": "module",
+  "version": "1.0.0",
   "module": "index.ts",
-  "workspaces": ["lib", "playground"]
+  "workspaces": ["lib", "playground"],
+  "scripts": {
+    "build": "bun --filter './lib' build",
+    "playground": "bun --filter './playground' dev",
+    "postinstall": "bun run build"
+  }
 }
