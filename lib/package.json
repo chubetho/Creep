@@ -1,8 +1,20 @@
 {
-  "name": "lib",
+  "name": "@creep/lib",
   "type": "module",
   "version": "1.0.0",
   "private": true,
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./dist/*": "./dist/*"
+  },
+  "main": "index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "bun run vite",
     "build": "tsc && bun run vite build",
@@ -15,6 +27,7 @@
     "@types/node": "^20.12.12",
     "eslint": "^9.2.0",
     "typescript": "^5.4.5",
-    "vite": "^5.2.11"
+    "vite": "^5.2.11",
+    "vite-plugin-dts": "^3.9.1"
   }
 }

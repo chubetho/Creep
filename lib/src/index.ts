@@ -14,5 +14,5 @@ export async function getFP() {
 
   const hashes = await Promise.all(promises)
   const fp = await hashify(hashes)
-  console.log(fp)
+  return fp
 }

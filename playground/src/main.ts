@@ -1,7 +1,13 @@
 import './style.css'
+import { getFP } from '@creep/lib'
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <h1>Hello</h1>
-  </div>
-`
+const now = new Date()
+getFP().then((fp) => {
+  const diff = new Date().getTime() - now.getTime()
+  document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+    <div>
+      <p>Time: ${diff} ms</p>
+      <p>${fp}</p>
+    </div>
+  `
+})
