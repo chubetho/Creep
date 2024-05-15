@@ -3,16 +3,13 @@ import { hashify } from './utils/crypto'
 export async function getFP() {
   const modules = await import('./modules')
   const fns = Object.values(modules).map(fn => fn())
-  const result = await Promise.allSettled(fns)
+  const results = await Promise.allSettled(fns)
 
-  const promises = result.map((r) => {
-    if (r.status === 'rejected')
-      return undefined
+  const hashes = await Promise.all(
+    results
+      .filter(r => r.status === 'fulfilled')
+      .map(r => hashify((r as PromiseFulfilledResult<string>).value)),
+  )
 
-    return hashify(r.value)
-  })
-
-  const hashes = await Promise.all(promises)
-  const fp = await hashify(hashes)
-  return fp
+  return await hashify(hashes)
 }

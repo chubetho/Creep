@@ -1,31 +1,5 @@
 const GIGABYTE = 1073741824 // bytes
 
-// based on and inspired by
-// https://github.com/Joe12387/OP-Fingerprinting-Script/blob/main/opfs.js#L443
-function getTimingResolution(): [number, number] {
-  const maxRuns = 5000
-  let valA = 1
-  let valB = 1
-  let res
-
-  for (let i = 0; i < maxRuns; i++) {
-    const a = performance.now()
-    const b = performance.now()
-    if (a < b) {
-      res = b - a
-      if (res > valA && res < valB) {
-        valB = res
-      }
-      else if (res < valA) {
-        valB = valA
-        valA = res
-      }
-    }
-  }
-
-  return [valA, valB]
-}
-
 function getClientLitter(): string[] {
   try {
     const iframe = document.createElement('iframe')
@@ -108,14 +82,12 @@ export async function getStatus() {
     quotaA,
     quotaB,
     scriptSize,
-    timingRes,
     clientLitter,
   ] = await Promise.all([
     getBattery(),
     getStorage(),
     getStorage(),
     getScriptSize(),
-    getTimingResolution(),
     [...new Set([...getClientLitter(), ...getClientCode()])].sort().slice(0, 50),
   ])
 
@@ -172,7 +144,6 @@ export async function getStatus() {
     saveData,
     downlinkMax,
     type,
-    timingRes,
     clientLitter,
     scripts,
     scriptSize,
