@@ -23,7 +23,7 @@ jobs:
         run: bun install --production
 
       - name: Build FE
-        run: bun --filter './playground' build --base /Creep/
+        run: bun --filter './playground' build:ci
 
       - uses: JamesIves/github-pages-deploy-action@v4
         with:
