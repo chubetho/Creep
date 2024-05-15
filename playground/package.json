@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:ci": "tsc && vite build -- --base /creep/",
     "preview": "vite preview"
   },
   "dependencies": {

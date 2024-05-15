@@ -22,8 +22,8 @@ jobs:
       - name: Install
         run: bun install --production
 
-      - name: Build FE
-        run: bun --filter './playground' build:ci
+      - name: Build Playground
+        run: bun --filter './playground' build
 
       - uses: JamesIves/github-pages-deploy-action@v4
         with:
